@@ -10,6 +10,7 @@ import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
 
 import authRoutes from './routes/authRoutes.js';
+import storesRoutes from './routes/storesRoutes.js';
 
 import cookieParser from 'cookie-parser';
 
@@ -23,6 +24,7 @@ app.use(helmet());
 app.use(cookieParser());
 
 app.use(authRoutes);
+app.use(storesRoutes);
 
 app.use(notFoundHandler);
 

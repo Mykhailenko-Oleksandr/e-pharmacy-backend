@@ -25,7 +25,10 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: 'https://ac.goit.global/fullstack/react/default-avatar.jpg',
+    },
+    cart: {
+      type: Array,
+      default: [],
     },
   },
   {
