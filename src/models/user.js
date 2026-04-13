@@ -2,8 +2,9 @@ import { model, Schema } from 'mongoose';
 
 const userSchema = new Schema(
   {
-    username: {
+    name: {
       type: String,
+      required: true,
       trim: true,
     },
     email: {
@@ -12,10 +13,15 @@ const userSchema = new Schema(
       required: true,
       trim: true,
     },
+    phone: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     password: {
       type: String,
       required: true,
-      min: 8,
+      min: 7,
     },
     avatar: {
       type: String,
@@ -27,13 +33,6 @@ const userSchema = new Schema(
     versionKey: false,
   },
 );
-
-userSchema.pre('save', function (next) {
-  if (!this.username) {
-    this.username = this.email;
-  }
-  next();
-});
 
 userSchema.methods.toJSON = function () {
   const obj = this.toObject();

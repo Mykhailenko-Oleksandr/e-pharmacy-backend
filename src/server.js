@@ -8,7 +8,8 @@ import { connectMongoDB } from './db/connectMongoDB.js';
 import { logger } from './middleware/logger.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { errorHandler } from './middleware/errorHandler.js';
-import sampleRoutes from './routes/sampleRoutes.js';
+
+import authRoutes from './routes/authRoutes.js';
 
 import cookieParser from 'cookie-parser';
 
@@ -21,7 +22,7 @@ app.use(cors());
 app.use(helmet());
 app.use(cookieParser());
 
-app.use(sampleRoutes);
+app.use(authRoutes);
 
 app.use(notFoundHandler);
 
