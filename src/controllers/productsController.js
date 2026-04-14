@@ -17,7 +17,7 @@ export const getProducts = async (req, res) => {
 
   const [totalProducts, products] = await Promise.all([
     productsQuery.clone().countDocuments(),
-    productsQuery.skip(skip).limit(perPage),
+    productsQuery.skip(skip).limit(perPage).select('-reviews -description'),
   ]);
 
   const totalPages = Math.ceil(totalProducts / perPage);
