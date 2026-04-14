@@ -1,3 +1,4 @@
+import createHttpError from 'http-errors';
 import { Product } from '../models/product.js';
 
 export const getProducts = async (req, res) => {
@@ -23,4 +24,16 @@ export const getProducts = async (req, res) => {
   const totalPages = Math.ceil(totalProducts / perPage);
 
   res.status(200).json({ page, perPage, totalProducts, totalPages, products });
+};
+
+export const getProductById = async (req, res) => {
+  const { productId } = req.params;
+
+  const product = await Product.findById(productId);
+
+  if (!product) {
+    throw createHttpError(404, 'Product not found');
+  }
+
+  res.status(200).json(product);
 };
