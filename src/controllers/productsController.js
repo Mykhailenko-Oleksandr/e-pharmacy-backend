@@ -18,7 +18,7 @@ export const getProducts = async (req, res) => {
 
   const [totalProducts, products] = await Promise.all([
     productsQuery.clone().countDocuments(),
-    productsQuery.skip(skip).limit(perPage).select('-reviews -description'),
+    productsQuery.skip(skip).limit(perPage),
   ]);
 
   const totalPages = Math.ceil(totalProducts / perPage);
@@ -29,7 +29,9 @@ export const getProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
   const { productId } = req.params;
 
-  const product = await Product.findById(productId);
+  const product = await Product.findById(productId).populate(
+    'reviews description',
+  );
 
   if (!product) {
     throw createHttpError(404, 'Product not found');

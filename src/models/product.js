@@ -53,10 +53,12 @@ const productsSchema = new Schema(
     reviews: {
       type: [reviewSchema],
       default: [],
+      select: false,
     },
     description: {
       type: [descriptionSchema],
       default: [],
+      select: false,
     },
   },
   {
