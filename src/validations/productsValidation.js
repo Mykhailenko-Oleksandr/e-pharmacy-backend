@@ -12,6 +12,7 @@ export const getProductsValidation = {
     perPage: Joi.number().integer().min(4).max(24).default(12),
     search: Joi.string().trim().allow(''),
     category: Joi.string().valid(...CATEGORIES),
+    discount: Joi.number().integer(),
   }),
 };
 

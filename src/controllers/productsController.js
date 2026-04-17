@@ -2,8 +2,7 @@ import createHttpError from 'http-errors';
 import { Product } from '../models/product.js';
 
 export const getProducts = async (req, res) => {
-  const { page = 1, perPage = 12, search, category } = req.query;
-
+  const { page = 1, perPage = 12, search, category, discount } = req.query;
   const productsQuery = Product.find();
 
   const skip = (page - 1) * perPage;
@@ -14,6 +13,10 @@ export const getProducts = async (req, res) => {
 
   if (category) {
     productsQuery.where('category').equals(category);
+  }
+
+  if (discount) {
+    productsQuery.where('discountPercent').equals(discount);
   }
 
   const [totalProducts, products] = await Promise.all([

@@ -60,6 +60,12 @@ const productsSchema = new Schema(
       default: [],
       select: false,
     },
+    discountPercent: {
+      type: Number,
+    },
+    oldPice: {
+      type: Number,
+    },
   },
   {
     timestamps: true,
