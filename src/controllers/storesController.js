@@ -9,7 +9,7 @@ export const getStores = async (req, res) => {
 
   const [totalStores, stores] = await Promise.all([
     storesQuery.clone().countDocuments(),
-    storesQuery.skip(skip).limit(perPage).sort({ rating: -1 }),
+    storesQuery.skip(skip).limit(perPage).sort({ rating: -1, _id: 1 }),
   ]);
 
   const totalPages = Math.ceil(totalStores / perPage);
