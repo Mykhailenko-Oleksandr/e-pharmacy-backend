@@ -26,16 +26,6 @@ const userSchema = new Schema(
     avatar: {
       type: String,
     },
-    // cart: [
-    //   {
-    //     productId: {
-    //       type: Schema.Types.ObjectId,
-    //       ref: 'Product',
-    //       required: true,
-    //     },
-    //     quantity: { type: Number, default: 1 },
-    //   },
-    // ],
   },
   {
     timestamps: true,

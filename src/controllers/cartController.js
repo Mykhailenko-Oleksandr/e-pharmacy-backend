@@ -61,12 +61,18 @@ export const updateCart = async (req, res) => {
         cart.items[itemIndex].quantity + 1 <= product.stock
           ? cart.items[itemIndex].quantity + 1
           : cart.items[itemIndex].quantity;
+    } else {
+      cart.items.push({ productId });
     }
   }
 
   await cart.save();
 
-  res.status(200).json(cart.items);
+  const populatedCart = await Cart.findOne({ userId }).populate(
+    'items.productId',
+  );
+
+  res.status(200).json(populatedCart.items);
 };
 
 export const deleteProduct = async (req, res) => {
@@ -95,7 +101,11 @@ export const deleteProduct = async (req, res) => {
 
   await cart.save();
 
-  res.status(200).json(cart.items);
+  const populatedCart = await Cart.findOne({ userId }).populate(
+    'items.productId',
+  );
+
+  res.status(200).json(populatedCart.items);
 };
 
 export const checkoutCart = async (req, res) => {
