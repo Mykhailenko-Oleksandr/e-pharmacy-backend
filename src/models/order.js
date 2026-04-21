@@ -32,6 +32,10 @@ const orderSchema = new Schema(
       min: 0,
       required: true,
     },
+    payment: {
+      type: String,
+      enum: ['cash', 'bank'],
+    },
     status: {
       type: String,
       enum: [...STATUSES],

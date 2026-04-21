@@ -110,7 +110,7 @@ export const deleteProduct = async (req, res) => {
 
 export const checkoutCart = async (req, res) => {
   const userId = req.user?._id;
-  const { name, email, address, phone } = req.body;
+  const { name, email, address, phone, payment } = req.body;
 
   const user = await User.findById(userId);
   if (!user) {
@@ -137,6 +137,7 @@ export const checkoutCart = async (req, res) => {
       quantity: item.quantity,
     })),
     price: Number(totalPrice.toFixed(2)),
+    payment,
   });
 
   cart.items = [];

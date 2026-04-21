@@ -20,5 +20,6 @@ export const checkoutCartSchema = {
       .pattern(/^\+?[0-9]{7,15}$/)
       .required(),
     address: Joi.string().required(),
+    payment: Joi.string().valid('cash', 'bank').required(),
   }).required(),
 };
