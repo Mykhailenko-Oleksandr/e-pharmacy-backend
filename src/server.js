@@ -15,6 +15,7 @@ import productsRoutes from './routes/productsRoutes.js';
 import reviewsRoutes from './routes/reviewsRoutes.js';
 import usersRoutes from './routes/usersRoutes.js';
 import cartRoutes from './routes/cartRoutes.js';
+import categoryRoutes from './routes/categoryRoutes.js';
 
 import cookieParser from 'cookie-parser';
 
@@ -33,6 +34,7 @@ app.use(storesRoutes);
 app.use(productsRoutes);
 app.use(reviewsRoutes);
 app.use(cartRoutes);
+app.use(categoryRoutes);
 
 app.use(notFoundHandler);
 
